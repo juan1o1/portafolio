@@ -1,0 +1,124 @@
+!!!5
+%html	
+	%head
+		%meta{charset:"utf-8"}
+		%title Juan's Restaurant
+		%meta{name:"description", content:"Come delicioso en el restaurante de Juan, comida de calidad."}
+		%link{rel:"icon", href:"videos/images/favicon.ico"}
+		%link{href:"https://fonts.googleapis.com/css?family=Dancing+Script&display=swap",rel:"stylesheet"}
+		%link{rel:"styleheet", type:"text/css", href:"css/normalize.css"}
+		%link{rel:"stylesheet", type:"text/css", href:"Bootstrap/css/bootstrap.css"}
+		%link{rel:"stylesheet", type:"text/css", href:"flexboxgrid-6.3.1/css/flexboxgrid.css"}
+		%link{rel:"stylesheet", href:"css/body.css"}
+		%script{scr:"js/modernizr-2.8.3.min.js"}
+		%script{src:"https://kit.fontawesome.com/8980f9530b.js",crossorigin:"anonymous"}
+	%body
+
+		="<!--{if lt IE 9>"
+		%p{class:"browserupgrade"}
+			Estas utilizando un navegador
+			%strong Desactualizado.
+			Por favor
+			%a{href:"http://browsehappy.com/"}
+				actualiza tu navegador
+			para una mejor experiencia
+		="<![endif]-->"
+		.video-container
+			%video{autoplay:true,loop:true,width:"1280",height:"720",poster:"videos/images/tocino.jpg"}
+				%source{src:"videos/mp4/tocino.mp4", typ:"video/mp4"}
+				%source{src:"videos/webm/tocino.webm", typ:"video/webm"}
+		.row.full-height.middle-xs.center-xs.relative.up#home
+			.col-xs-12
+				.box.black-text
+					%img{src:"videos/images/logo.png", width:"200"}
+					%h1.dancing-script.titulo.no-margin Juan's Restaurant
+					%p#is-open
+						%i.glyphicon.glyphicon-time 
+						Abierto ahora
+			%nav.fixed.right.top.white-text.navigation#navigation
+				-menu = ["Inicio", "Menú", "Galeria", "Contacto", "Cómo llegar"]
+				%ul.list-inline
+					-menu.each do |item|
+						%li
+							%a{}= item
+			.absolute.black.large-padding.white-text.full-width#description
+				.row.middle-xs.center-xs
+					.col-xs-7.col-sm-6.white-text.medium
+						Atención cálida y comida preparada por artistas
+					.col-xs.hidden#sticky-navigation
+						.box
+							%nav.text-right.navigation#responsive-nav
+								%i.white-text.subtitulo#menu-opener{class:"fas fa-hamburger"}
+								%ul.list-inline
+									-menu.each do |item|
+										%li
+											%a{}= item
+		.text-center.relative#menu
+			.absolute.white#menu-titulo
+				%h2.dancing-script.titulo Menú
+			-menu_photos = [{name: "Club Hotdogs", pricing:"10.00", image:"club-hotdogs"},{name: "Combo Hamburguesa", pricing:"50.00", image:"combo"},{name: "Pizza", pricing:"25.00", image:"pizza"},{name: "Burritos ", pricing:"25.00", image:"burritos"},{name: "Panini", pricing:"15.00", image:"panini"},{name: "Papas", pricing:"10.00", image:"papas"},{name: "Hamburguesa", pricing:"20.00", image:"hamburger"},{name: "Club Sandwich", pricing:"22.00", image:"club-sandwich"}]
+			.row
+				-menu_photos.each do |photos|
+					.col-md-4.col-lg-3.col-sm-6.col-xs-12.food{style:"background-image:url(videos/images/food/#{photos[:image]}-thumb.jpg)"}
+						.screen
+							.row.middle-xs.full-height
+								.col-xs-12
+									%h3.dancing-script.white-text.subtitulo= photos[:name]
+									%p.no-margin.white-text= photos[:pricing] + "USD"
+		#gallery
+			.inner
+				-menu_photos.each do |photos|
+					.image{style:"background-image:url(videos/images/food/#{photos[:image]}.jpg)"}
+		.container
+			.card.white.black-text.text-center.relative
+				%h3.medium.slim
+					En
+					%strong.dancing-script.medium Juan's Restaurant 
+					cocinar no es una profesión, no es una tecnica, es un
+					%strong.dancing-script.medium arte
+				%p.top-space
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					%strong.dancing-script.medium Juan - Chef
+		.black.white-text.full-height#contact
+			.row.middle-xs.full-height
+				.col-xs-12
+					.box
+						%p.text-center.medium#info-contacto Llena el campo correspondiente y envianos un correo.
+										
+						%form{action:"https://formspree.io/jesusandrade7643198250@gmail.com",method:"post",id:"contact_form",class:"step-form"}
+						
+							.row.center-xs
+								.col-xs-12.col-sm-3.col-md-1.first-md
+									.box
+										-3.times do |i|
+											-if i == 0
+												.path-step.active
+											-else
+												.path-step
+								.col-xs-12.col-sm-3.first-xs
+									.box
+										%fieldset.step.active
+											%input{type:"email",name:"email",placeholder:"Tu correo electrónico",autocomplete:"off",class:"input",required:true}
+										%fieldset.step
+											%input{type:"text",name:"name",placeholder:"Tu nombre",autocomplete:"off",class:"input",required:true}
+										%fieldset.step
+											%textarea{name:"body",placeholder:"Mensaje",class:"input",required:true}
+		#location
+			#map
+				%iframe{src:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.5106534341917!2d-74.06714714932944!3d4.853727041645036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f87907fdbdf23%3A0xa126446bbacdbc43!2sAndres%20Carne%20de%20Res!5e0!3m2!1ses-419!2sco!4v1574371066762!5m2!1ses-419!2sco", width:"100%", height:"500px", frameborder:"0", style:"border:0;", allowfullscreen:""}
+			#message.black.large-padding.white-text.text-center.medium
+				Ven y visitanos para una cena inolvidable en  
+				%strong.dancing-script.medium Juan's Restaurant 
+
+		%script{src:"https://code.jquery.com/jquery-3.4.1.min.js", integrity:"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=", crossorigin:"anonymous"}
+		%script
+			window.jQuery || document.write("<script scr>'js/jquery-1.12.0.min.js'<\/script>")
+		
+		%script{ src:"dist/form_object.js"}
+		%script{ src:"js/mein.js"}
+		%script{ src:"dist/steps.js"}
